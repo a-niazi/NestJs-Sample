@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { Query } from '@nestjs/common/decorators';
+import { Delete, Query } from '@nestjs/common/decorators';
 import { url } from 'inspector';
 import { CreateUserDto } from './dto/create-user.dto';
 import { GetUserDto } from './dto/get-user.dto';
@@ -26,6 +26,11 @@ export class UsersController {
     @Post()
     createUser(@Body() createUserDto: CreateUserDto): User{
         return this.usersService.createUser(createUserDto);
+    }
+
+    @Delete('/:id')
+    deleteUser(@Param('id') id:string): void{
+        return this.usersService.deleteUser(id);
     }
 
 }
