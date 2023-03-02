@@ -1,6 +1,8 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Query } from '@nestjs/common/decorators';
 import { url } from 'inspector';
 import { CreateUserDto } from './dto/create-user.dto';
+import { GetUserDto } from './dto/get-user.dto';
 import { User } from './user.model';
 import { UsersService } from './users.service';
 
@@ -9,7 +11,10 @@ export class UsersController {
     constructor(private usersService: UsersService){}
 
     @Get()
-    findAll(): User[]{
+    find(@Query() getUserDto: GetUserDto): User[]{
+        if (Object.keys(getUserDto).length){
+            return this.usersService.find(getUserDto);
+        }
         return this.usersService.findAll();
     }
 

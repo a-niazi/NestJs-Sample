@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { User } from './user.model';
 import { v4 as uuid} from 'uuid'
 import { CreateUserDto } from './dto/create-user.dto';
+import { GetUserDto } from './dto/get-user.dto';
 
 @Injectable()
 export class UsersService {
@@ -9,6 +10,19 @@ export class UsersService {
 
     findAll(): User[]{
         return this.users;
+    }
+
+    find(getUserDto: GetUserDto) : User[] {
+        let users = this.findAll();
+        const { name, tell } = getUserDto;
+        if (name){
+            users = users.filter((user) => user.name.toLowerCase().includes(name))
+        }
+        if (tell){
+            users = users.filter((user) => user.tell == tell)
+        }
+        return users;
+        
     }
 
     findById(id: string): User{
