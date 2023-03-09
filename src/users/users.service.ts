@@ -45,4 +45,10 @@ export class UsersService {
         this.users = this.users.filter((user) => user.id !== id);
     }
 
+    updateUserTell(id: string, tell:string): User{
+        const user = this.findById(id);
+        user.tell = tell;
+        return user;
+    }
+
 }

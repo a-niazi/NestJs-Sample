@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { Delete, Query } from '@nestjs/common/decorators';
+import { Delete, Patch, Query } from '@nestjs/common/decorators';
 import { url } from 'inspector';
 import { CreateUserDto } from './dto/create-user.dto';
 import { GetUserDto } from './dto/get-user.dto';
@@ -31,6 +31,11 @@ export class UsersController {
     @Delete('/:id')
     deleteUser(@Param('id') id:string): void{
         return this.usersService.deleteUser(id);
+    }
+    // http://localhost:3000/users/:id/tell
+    @Patch('/:id/tell')
+    updateUserTell(@Param('id') id: string, @Body('tell') tell:string): User{
+        return this.usersService.updateUserTell(id, tell);
     }
 
 }
