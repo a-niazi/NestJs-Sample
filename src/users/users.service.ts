@@ -28,7 +28,7 @@ export class UsersService {
     findById(id: string): User{
         return this.users.find((user) => user.id == id)
     }
-    createUser(createUserDto: CreateUserDto): User{
+    create(createUserDto: CreateUserDto): User{
         const { name , tell } =  createUserDto
         const user:User = {
             id: uuid(),
@@ -41,7 +41,7 @@ export class UsersService {
         return user;
     }
 
-    deleteUser(id: string): void {
+    delete(id: string): void {
         this.users = this.users.filter((user) => user.id !== id);
     }
 

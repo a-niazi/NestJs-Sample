@@ -25,12 +25,12 @@ export class UsersController {
 
     @Post()
     createUser(@Body() createUserDto: CreateUserDto): User{
-        return this.usersService.createUser(createUserDto);
+        return this.usersService.create(createUserDto);
     }
 
     @Delete('/:id')
     deleteUser(@Param('id') id:string): void{
-        return this.usersService.deleteUser(id);
+        return this.usersService.delete(id);
     }
     // http://localhost:3000/users/:id/tell
     @Patch('/:id/tell')
