@@ -42,23 +42,6 @@ export class UsersService {
 
         return this.repository.save(user);
     }
-
-    // findById(id: string): User{
-    //     return this.users.find((user) => user.id == id)
-    // }
-    // createUser(createUserDto: CreateUserDto): User{
-    //     const { name , tell } =  createUserDto
-    //     const user:User = {
-    //         id: uuid(),
-    //         name,
-    //         tell
-    //     }
-        
-    //     this.users.push(user);
-
-    //     return user;
-    // }
-
     async deleteUser(id: number): Promise<void> {
         const restoreResponse = await this.repository.delete(id);
         if (!restoreResponse.affected) {

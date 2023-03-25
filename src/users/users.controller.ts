@@ -29,6 +29,7 @@ export class UsersController {
     @Delete('/:id')
     deleteUser(@Param('id') id:number): Promise<void>{
         return this.service.deleteUser(id);
+    
     }
     // @Get()
     // find(@Query() getUserDto: GetUserDto): User[]{
