@@ -31,25 +31,8 @@ export class UsersController {
         return this.service.deleteUser(id);
     
     }
-    // @Get()
-    // find(@Query() getUserDto: GetUserDto): User[]{
-    //     if (Object.keys(getUserDto).length){
-    //         return this.usersService.getUser(getUserDto);
-    //     }
-    //     return this.usersService.findAll();
-    // }
-
-    // @Get('/:id')
-    // findById(@Param('id') id:string): User{
-    //     return this.usersService.findById(id);
-    // }
-
-    // @Post()
-    // createUser(@Body() createUserDto: CreateUserDto): User{
-    //     return this.usersService.createUser(createUserDto);
-    // }
-
-    // // http://localhost:3000/users/:id/tell
+    
+    // http://localhost:3000/users/:id/tell
     // @Patch('/:id/tell')
     // updateUserTell(@Param('id') id: string, @Body('tell') tell:string): User{
     //     return this.usersService.updateUserTell(id, tell);
