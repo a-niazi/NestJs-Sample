@@ -1,10 +1,12 @@
-import { Body, Controller, Get, Inject, Param, ParseIntPipe, Post } from '@nestjs/common';
+import { Body, Controller, Get, Inject, Param, ParseIntPipe, Post, UseGuards } from '@nestjs/common';
 import { Delete, Patch, Query } from '@nestjs/common/decorators';
 import { url } from 'inspector';
 import { Repository } from 'typeorm';
+import { GetUserDto } from './dto/get-user.dto';
 import { CreateUserDto } from './dto/user.dto';
 import { User } from './user.entity';
 import { UsersService } from './users.service';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('user')
 export class UsersController {
@@ -16,11 +18,18 @@ export class UsersController {
         return this.service.findOne(id);
     }
 
+    @Get('tell/:tell')
+    public findUserBytell(@Param('tell', ) tell: string): Promise<User> {
+        return this.service.findByTell(tell);
+    }
+
+    @UseGuards(AuthGuard('jwt'))
     @Get()
     getAll() {
       return this.service.getAllUsers();
     }
 
+    @UseGuards(AuthGuard('jwt'))
     @Post()
     public createUser(@Body() body: CreateUserDto): Promise<User> {
       return this.service.createUser(body);
