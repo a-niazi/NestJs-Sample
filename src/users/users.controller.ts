@@ -7,11 +7,19 @@ import { CreateUserDto } from './dto/user.dto';
 import { User } from './user.entity';
 import { UsersService } from './users.service';
 import { AuthGuard } from '@nestjs/passport';
+import { ApiBearerAuth, ApiBasicAuth } from '@nestjs/swagger';
 
 @Controller('user')
 export class UsersController {
     @Inject(UsersService)
     private readonly service: UsersService;
+
+    @Get('/getAll')
+    @UseGuards(AuthGuard('jwt'))
+    @ApiBearerAuth()
+    public getAllUsers() {
+      return this.service.getAllUsers();
+    }
 
     @Get(':id')
     public findUser(@Param('id', ParseIntPipe) id: number): Promise<User> {
@@ -23,14 +31,9 @@ export class UsersController {
         return this.service.findByTell(tell);
     }
 
+    @Post('/add')
     @UseGuards(AuthGuard('jwt'))
-    @Get()
-    getAll() {
-      return this.service.getAllUsers();
-    }
-
-    @UseGuards(AuthGuard('jwt'))
-    @Post()
+    @ApiBearerAuth()
     public createUser(@Body() body: CreateUserDto): Promise<User> {
       return this.service.createUser(body);
     }

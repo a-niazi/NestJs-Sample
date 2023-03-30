@@ -8,11 +8,21 @@
 		{
 			"name": "add user",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imhhc2FubmlhemkiLCJpYXQiOjE2Nzk5OTA3NDEsImV4cCI6MTcxMTUyNjc0MX0.SdImH-Q_kdPVG0HzCQqINWuKhcGdrN0JQ0gT5rmXM28",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"hasan\",\r\n    \"tell\": \"09192931804\",\r\n    \"email\": \"amir.niazi@yahoo.com\"\r\n\r\n}",
+					"raw": "{\r\n    \"name\": \"erewfds\",\r\n    \"tell\": \"09222222222\",\r\n    \"email\": \"amir.niazi@yahoo.com\",\r\n    \"username\": \"rezai\",\r\n    \"password\": \"1111\"\r\n\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -20,7 +30,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/v1/api/user",
+					"raw": "localhost:3000/v1/api/user/add",
 					"host": [
 						"localhost"
 					],
@@ -28,7 +38,8 @@
 					"path": [
 						"v1",
 						"api",
-						"user"
+						"user",
+						"add"
 					]
 				}
 			},
@@ -41,7 +52,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"hasan\",\r\n    \"tell\": \"09192931804\",\r\n    \"email\": \"amir.niazi@yahoo.com\"\r\n\r\n}",
+					"raw": "{\r\n     \"username\": \"hasanniazi\",\r\n    \"password\": \"4321\"\r\n\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -49,7 +60,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/v1/api/user",
+					"raw": "localhost:3000/v1/api/login",
 					"host": [
 						"localhost"
 					],
@@ -57,7 +68,36 @@
 					"path": [
 						"v1",
 						"api",
-						"user"
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"erfan\",\r\n    \"tell\": \"09222222222\",\r\n    \"email\": \"amir.niazi@yahoo.com\",\r\n    \"username\": \"erfan\",\r\n    \"password\": \"1111\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/v1/api/register",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"v1",
+						"api",
+						"register"
 					]
 				}
 			},
@@ -90,7 +130,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:3000/v1/api/user/09120515091",
+					"raw": "localhost:3000/v1/api/user/tell/09192931804",
 					"host": [
 						"localhost"
 					],
@@ -99,7 +139,8 @@
 						"v1",
 						"api",
 						"user",
-						"09120515091"
+						"tell",
+						"09192931804"
 					]
 				}
 			},
@@ -112,7 +153,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"tell\": \"09120515091\",\r\n    \"username\": \"amirniazi\"\r\n}",
+					"raw": "{\r\n    \"tell\": \"09120515091\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -120,7 +161,7 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:3000/v1/api/user/query",
+					"raw": "localhost:3000/v1/api/user/tell",
 					"host": [
 						"localhost"
 					],
@@ -129,21 +170,21 @@
 						"v1",
 						"api",
 						"user",
-						"query"
+						"tell"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "get users",
+			"name": "get all users",
 			"request": {
 				"auth": {
 					"type": "bearer",
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imhhc2FubmlhemkiLCJpYXQiOjE2Nzk4MjQ1NzcsImV4cCI6MTY3OTgyODE3N30.2BCSZI8GmVcWefTlHsGo5lMb8-KGkuVUSUqOse9afgQ",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Imhhc2FubmlhemkiLCJpYXQiOjE2Nzk5OTA3NDEsImV4cCI6MTcxMTUyNjc0MX0.SdImH-Q_kdPVG0HzCQqINWuKhcGdrN0JQ0gT5rmXM28",
 							"type": "string"
 						}
 					]
@@ -151,7 +192,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:3000/v1/api/user",
+					"raw": "localhost:3000/v1/api/user/getAll",
 					"host": [
 						"localhost"
 					],
@@ -159,7 +200,8 @@
 					"path": [
 						"v1",
 						"api",
-						"user"
+						"user",
+						"getAll"
 					]
 				}
 			},
@@ -171,7 +213,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "localhost:3000/v1/api/user/5",
+					"raw": "localhost:3000/v1/api/user/6",
 					"host": [
 						"localhost"
 					],
@@ -180,7 +222,7 @@
 						"v1",
 						"api",
 						"user",
-						"5"
+						"6"
 					]
 				}
 			},
