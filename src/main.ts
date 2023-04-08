@@ -45,7 +45,7 @@ async function bootstrap() {
   const swaggerConfig = new DocumentBuilder().setTitle('Online School Application')
                       .setDescription("Online School API Application")
                       .setVersion('v1')
-                      .addTag('user')
+                      .addTag('users')
                       .addBearerAuth(
                         {type:'http', scheme: 'bearer', bearerFormat: 'Token'},
                         'access-token',
