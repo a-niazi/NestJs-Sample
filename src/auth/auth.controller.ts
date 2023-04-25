@@ -1,9 +1,10 @@
-import { Controller, Post, Request, UseGuards, Body } from '@nestjs/common';
+import { Controller, Post, Request, UseGuards, Body, Headers} from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { AuthService } from './auth.service';
 import { CreateUserDto, UserInfoDto } from '../users/dto/'
 import { LoginDto } from './dto/login.dto';
 import { ApiOkResponse, ApiUnauthorizedResponse, ApiBody } from '@nestjs/swagger';
+
 
 @Controller('auth')
 export class AuthController {
@@ -35,4 +36,10 @@ export class AuthController {
       const user = await this.authService.register(createDTO);
       return user;
   }
+  @Post('test')
+  async test(@Headers('authorization') accessToken: string) {
+      const user = await this.authService.test(accessToken);
+      return user;
+  }
+
 }

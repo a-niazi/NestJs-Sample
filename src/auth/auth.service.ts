@@ -6,7 +6,7 @@ import { LoginDto } from './dto/login.dto'
 import * as bcrypt from 'bcrypt';
 import { UserExistException, UserNotFoundException } from 'src/common/exceptions'
 import { ConfigService } from '@nestjs/config';
-
+import { JwtUtil } from './jwtUtils';
 
  
 @Injectable()
@@ -15,6 +15,7 @@ export class AuthService {
         private userService: UsersService,
         private jwtService: JwtService,
         private readonly config: ConfigService,
+        private readonly jwtUtil: JwtUtil,
     ){}
     
     async validateUserCredentials(
@@ -45,7 +46,7 @@ export class AuthService {
         {
             throw new HttpException("wrong password", 400);
         }
-        const payload = {username: user.username, sub:user.id};
+        const payload = {username: user.username, userId:user.id};
         return {
             access_token: this.jwtService.sign(payload),
         };
@@ -58,10 +59,32 @@ export class AuthService {
         }
         userDto.password = await bcrypt.hash(userDto.password, Number(this.config.get<string>('HASH_SALT')));
         await this.userService.createUser(userDto);
-        const payload = {username: userDto.username, sub:user.id};
+        const payload = {username: userDto.username, userId:user.id};
         return {
             access_token: this.jwtService.sign(payload),
         };
+    }
+    async test(accessToken: string){
+        try{
+            const payload = await this.jwtUtil.decode(accessToken);
+            setTimeout(()=> {
+                console.log("sleep")
+            }, 60000)
+            console.log(payload.userID);
+            const data = this.convertTime(new Date())
+            console.log((await data).minutes);
+          }
+          catch(error){
+            throw error;
+          }
+          
+          
+      }
+    async convertTime(date: Date): Promise<{minutes: number,seconds: number}>{
+        const remainingTime: number = date.getTime() - new Date().getTime();
+        const minutes: number = Math.floor(remainingTime / 60000);
+        const seconds: number = Math.floor((remainingTime - minutes * 60000) / 1000);
+        return {minutes, seconds}
     }
 
 }

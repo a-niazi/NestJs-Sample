@@ -15,6 +15,7 @@ import { ConfigService } from '@nestjs/config';
 export class UsersService {
     @InjectRepository(User)
     private readonly repository: Repository<User>;
+
      // find(getUserDto: GetUserDto) : User[] {
     //     let users = this.findAll();
     //     const { name, tell } = getUserDto;
